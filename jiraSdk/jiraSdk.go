@@ -9,6 +9,9 @@ import (
   "bytes"
 )
 
+// WIP
+// TODO separate logic, move text parsing somewhere
+
 const (
   managerKey = "ManagerService"
   wsKey = "WebSocketConnectionService"
@@ -49,17 +52,21 @@ func getGitChangedFiles(resultChan chan []string) chan []string {
   return resultChan
 }
 
-func getServiceNameFromPath(filePaths chan []string) {
+func getServiceNameFromPath(filePaths chan []string, serviceNames chan map[string]string) {
   filePathsArr := <- filePaths
-  fmt.Println(">><><>", filePathsArr)
+  defer close(filePaths)
+  defer close(serviceNames)
+  resultMap := map[string]string{}
   for _, filePath := range filePathsArr {
     dirs := path.Dir(filePath)
     dirsArr := strings.Split(dirs, "/")
 
     if len(dirsArr) > 1 {
-      fmt.Println("DIRS>>", dirsArr[1])
+      resultMap[dirsArr[1]] = dirsArr[1]
     }
   }
+
+  serviceNames <- resultMap
 }
 
 func tmplFn(stringTmpl, markStr, key string) string {
@@ -90,18 +97,19 @@ type CommentsSDK struct {}
 
 func (sdk *CommentsSDK) CreateComment(issueIdOrKey string) (bool, error) {
   changeFiles := make(chan []string, 1)
-  defer close(changeFiles)
+  serviceNames := make(chan map[string]string, 1)
 
-  getGitChangedFiles(changeFiles)
-  getServiceNameFromPath(changeFiles)
+  go getGitChangedFiles(changeFiles)
+  go getServiceNameFromPath(changeFiles, serviceNames)
+
+  serviceNamesMap := <- serviceNames
 
   comment := header
-  comment += tmplFn(rowTemplate, allowToDeploy, managerKey)
-  comment += tmplFn(rowTemplate, allowToDeploy, wsKey)
-  comment += tmplFn(rowTemplate, dontDeploy, converterKey)
-  comment += tmplFn(rowTemplate, dontDeploy, restKey)
-  comment += tmplFn(rowTemplate, dontDeploy, ahsKey)
-  comment += tmplFn(rowTemplate, dontDeploy, nativeKey)
+  for _, serviceName := range serviceNamesMap {
+    if _, ok := servicesMap[serviceName]; ok {
+      comment += tmplFn(rowTemplate, allowToDeploy, serviceName)
+    }
+  }
   comment += footer
 
   return true, nil
