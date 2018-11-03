@@ -1,0 +1,62 @@
+{
+  "editor": {
+    "features": true,
+    "defaults": true,
+    "scenarios": true,
+    "gui": true,
+    "locale": true,
+    "experiments": true,
+    "statistics": true,
+    "track": true
+  },
+  "document": {
+    "source": true,
+    "access": true
+  },
+  "tools": {
+    "pages": true,
+    "attributes": true,
+    "text": true,
+    "checkmark": true,
+    "curve": true,
+    "image": true,
+    "erase": true,
+    "blackout": true,
+    "highlight": true,
+    "textbox": true,
+    "arrow": true,
+    "line": true,
+    "pen": true,
+    "sticky": true,
+    "unknown": true,
+    "cancel": true
+  },
+  "roles": {
+    "list": true
+  },
+  "versions": {
+    "list": true,
+    "preview": true,
+    "marker": true,
+    "apply": true
+  },
+  "collaboration": {
+    "hold": true,
+    "release": true,
+    "chat": true
+  },
+  "images": {
+    "list": true,
+    "add": true,
+    "update": true,
+    "delete": true
+  },
+  "signatures": {
+    "list": true,
+    "add": true,
+    "update": true,
+    "qrcode": true,
+    "request": true,
+    "delete": true
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "errorMessages": null,
+  "warningMessages": null,
+  "activityName": null,
+  "status": null,
+  "sessionHash": null,
+  "userId": null,
+  "projectId": null,
+  "channel": null,
+  "actionTime": null,
+  "clientType": null,
+  "uid": null,
+  "appVersion": null,
+  "mappingType": null,
+  "integration": null,
+  "mappingMode": null,
+  "todoListState": null,
+  "doc": null,
+  "phase": {
+    "enter": null,
+    "working": null,
+    "exit": null,
+    "enterTime": null
+  },
+  "actions": {
+    "constructor_save": null
+  },
+  "uniqueToolsOperations": {
+    "signature": null,
+    "checkmark": null,
+    "text": null,
+    "attributes": null,
+    "blackout": null,
+    "erase": null,
+    "pages": null,
+    "image": null,
+    "highlight": null,
+    "textbox": null,
+    "arrow": null,
+    "line": null,
+    "pen": null,
+    "sticky": null
+  },
+  "geo": {
+    "ip": null,
+    "headers": null,
+    "range": null,
+    "country": null,
+    "region": null,
+    "city": null,
+    "ll": null,
+    "metro": null,
+    "zip": null
+  },
+  "connection": {
+    "hasReconnects": null,
+    "closeReason": null,
+    "destroyOnTimeout": null
+  },
+  "device": {
+    "type": null,
+    "os": null,
+    "osVersion": null,
+    "browserName": null,
+    "browser": null,
+    "userAgent": null
+  },
+  "viewer": {
+    "formId": null,
+    "modeId": null,
+    "sourceType": null,
+    "expBranch": null,
+    "loggedIn": null,
+    "name": null,
+    "paid": null,
+    "id": null,
+    "modeLabel": null,
+    "email": null,
+    "expId": null
+  }
+}
